@@ -22,9 +22,9 @@ refs.checkbox.addEventListener('change', hendleInput);
 function saveColorTheme() {
   const savedTheme = localStorage.getItem('theme');
 
-  savedTheme === Theme.DARK
-    ? refs.checkbox.setAttribute('checked', true)
-    : refs.checkbox.removeAttribute('checked');
+  if (savedTheme === Theme.DARK) {
+    refs.checkbox.setAttribute('checked', true);
+  }
 
   if (savedTheme) {
     refs.body.className = savedTheme;
