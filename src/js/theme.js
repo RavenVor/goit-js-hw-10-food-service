@@ -19,8 +19,6 @@ function hendleInput() {
   localStorage.setItem('theme', currentTheme);
 }
 
-refs.checkbox.addEventListener('change', hendleInput);
-
 function saveColorTheme() {
   const savedTheme = localStorage.getItem('theme');
 
@@ -34,3 +32,5 @@ function saveColorTheme() {
 }
 
 saveColorTheme();
+
+refs.checkbox.addEventListener('change', hendleInput);
