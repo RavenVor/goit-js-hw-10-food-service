@@ -26,7 +26,9 @@ function saveColorTheme() {
     ? refs.checkbox.setAttribute('checked', true)
     : refs.checkbox.removeAttribute('checked');
 
-  refs.body.className = savedTheme;
+  if (savedTheme) {
+    refs.body.className = savedTheme;
+  }
 }
 
 saveColorTheme();
