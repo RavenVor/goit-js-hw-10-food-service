@@ -15,7 +15,8 @@ function hendleInput() {
   refs.body.classList.toggle(Theme.LIGHT);
   refs.body.classList.toggle(Theme.DARK);
 
-  localStorage.setItem('theme', refs.body.className);
+  const currentTheme = refs.body.getAttribute('class');
+  localStorage.setItem('theme', currentTheme);
 }
 
 refs.checkbox.addEventListener('change', hendleInput);
