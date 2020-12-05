@@ -8,9 +8,10 @@ const refs = {
   checkbox: document.querySelector('#theme-switch-toggle'),
 };
 
-refs.body.classList.add(Theme.LIGHT);
-
 function hendleInput() {
+  if (refs.body.className === '') {
+    refs.body.classList.add(Theme.LIGHT);
+  }
   refs.body.classList.toggle(Theme.LIGHT);
   refs.body.classList.toggle(Theme.DARK);
 
