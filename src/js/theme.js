@@ -9,14 +9,16 @@ const refs = {
 };
 
 function hendleInput() {
-  if (refs.body.className === '') {
-    refs.body.classList.add(Theme.LIGHT);
-  } else {
-    refs.body.classList.toggle(Theme.LIGHT);
-    refs.body.classList.toggle(Theme.DARK);
+  const body = refs.body;
+
+  if (body.className === '') {
+    body.classList.add(Theme.LIGHT);
   }
 
-  localStorage.setItem('theme', refs.body.className);
+  body.classList.toggle(Theme.LIGHT);
+  body.classList.toggle(Theme.DARK);
+
+  localStorage.setItem('theme', body.className);
 }
 
 function saveColorTheme() {
@@ -27,7 +29,7 @@ function saveColorTheme() {
   }
 
   if (savedTheme) {
-    refs.body.className = savedTheme;
+    refs.body.classList.add(savedTheme);
   }
 }
 

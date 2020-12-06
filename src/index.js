@@ -1,3 +1,3 @@
 import './styles.css';
-import './js/markup';
-import './js/theme';
+import './js/markup.js';
+import './js/theme.js';
