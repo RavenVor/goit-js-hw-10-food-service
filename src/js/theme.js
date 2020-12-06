@@ -10,7 +10,7 @@ const refs = {
 
 const body = refs.body;
 const checkbox = refs.checkbox;
-// body.classList.add(Theme.LIGHT);
+body.classList.add(Theme.LIGHT);
 
 function hendleInput() {
   if (body.className === Theme.LIGHT) {
@@ -39,19 +39,6 @@ checkbox.addEventListener('change', hendleInput);
 
 // const savedTheme = localStorage.getItem('theme');
 
-// if (savedTheme !== null) {
-//   body.classList.add(savedTheme);
-// }
-
-if (location.reload) {
-  const savedTheme = localStorage.getItem('theme');
-
-  body.classList.add(savedTheme);
-
-  if (savedTheme === Theme.DARK) {
-    checkbox.setAttribute('checked', true);
-  }
-}
 // console.dir(location.reload);
 
 // function saveColorTheme() {
