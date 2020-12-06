@@ -1,57 +1,60 @@
-const Theme = {
-  LIGHT: 'light-theme',
-  DARK: 'dark-theme',
-};
-
 const refs = {
   body: document.querySelector('body'),
   checkbox: document.querySelector('#theme-switch-toggle'),
 };
 
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+
 const body = refs.body;
 const checkbox = refs.checkbox;
-body.classList.add(Theme.LIGHT);
+
+function defoultNMode() {
+  body.classList.add(Theme.LIGHT);
+}
+
+function darkMode() {
+  body.classList.replace(Theme.LIGHT, Theme.DARK);
+
+  localStorage.setItem('theme', Theme.DARK);
+}
+
+function lightMode() {
+  body.classList.replace(Theme.DARK, Theme.LIGHT);
+
+  localStorage.setItem('theme', Theme.LIGHT);
+}
 
 function hendleInput() {
   if (body.className === Theme.LIGHT) {
-    body.classList.remove(Theme.LIGHT);
-    body.classList.add(Theme.DARK);
-
-    localStorage.setItem('theme', Theme.DARK);
+    darkMode();
     return;
   }
 
   if (body.className === Theme.DARK) {
-    body.classList.remove(Theme.DARK);
-    body.classList.add(Theme.LIGHT);
-
-    localStorage.setItem('theme', Theme.LIGHT);
+    lightMode();
     return;
   }
+}
 
-  //   body.classList.toggle(Theme.LIGHT);
-  //   body.classList.toggle(Theme.DARK);
+function saveColorTheme() {
+  const savedTheme = localStorage.getItem('theme');
 
-  //   localStorage.setItem('theme', body.className);
+  if (savedTheme) {
+    body.classList.add(savedTheme);
+  }
+
+  if (savedTheme === Theme.DARK) {
+    checkbox.setAttribute('checked', true);
+  }
+}
+
+saveColorTheme();
+
+if (body.className === '') {
+  defoultNMode();
 }
 
 checkbox.addEventListener('change', hendleInput);
-
-// const savedTheme = localStorage.getItem('theme');
-
-// console.dir(location.reload);
-
-// function saveColorTheme() {
-//   const savedTheme = localStorage.getItem('theme');
-
-//   if (savedTheme === Theme.DARK) {
-//     checkbox.setAttribute('checked', true);
-//   }
-
-//   if (savedTheme !== null) {
-//     body.classList.add(savedTheme);
-//     return;
-//   }
-// }
-
-// saveColorTheme();
