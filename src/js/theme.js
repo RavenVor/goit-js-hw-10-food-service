@@ -44,9 +44,11 @@ checkbox.addEventListener('change', hendleInput);
 // }
 
 if (location.reload) {
-  body.classList.add(localStorage.getItem('theme'));
+  const savedTheme = localStorage.getItem('theme');
 
-  if (localStorage.getItem('theme') === Theme.DARK) {
+  body.classList.add(savedTheme);
+
+  if (savedTheme === Theme.DARK) {
     checkbox.setAttribute('checked', true);
   }
 }
