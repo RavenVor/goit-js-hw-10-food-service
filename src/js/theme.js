@@ -1,5 +1,5 @@
 const refs = {
-  body: document.querySelector('body'),
+  body: document.body,
   checkbox: document.querySelector('#theme-switch-toggle'),
 };
 
@@ -8,53 +8,34 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
+const savedTheme = localStorage.getItem('theme');
 const body = refs.body;
 const checkbox = refs.checkbox;
 
-function defoultNMode() {
-  body.classList.add(Theme.LIGHT);
-}
-
-function darkMode() {
-  body.classList.replace(Theme.LIGHT, Theme.DARK);
-
-  localStorage.setItem('theme', Theme.DARK);
-}
-
-function lightMode() {
-  body.classList.replace(Theme.DARK, Theme.LIGHT);
-
-  localStorage.setItem('theme', Theme.LIGHT);
-}
-
 function hendleInput() {
-  if (body.className === Theme.LIGHT) {
-    darkMode();
-    return;
-  }
-
   if (body.className === Theme.DARK) {
-    lightMode();
+    body.classList.replace(Theme.DARK, Theme.LIGHT);
+    localStorage.setItem('theme', Theme.LIGHT);
     return;
   }
-}
 
-function saveColorTheme() {
-  const savedTheme = localStorage.getItem('theme');
-
-  if (savedTheme) {
-    body.classList.add(savedTheme);
+  if (body.className === Theme.LIGHT) {
+    body.classList.replace(Theme.LIGHT, Theme.DARK);
+    localStorage.setItem('theme', Theme.DARK);
+    return;
   }
-
-  if (savedTheme === Theme.DARK) {
-    checkbox.setAttribute('checked', true);
-  }
-}
-
-saveColorTheme();
-
-if (body.className === '') {
-  defoultNMode();
 }
 
 checkbox.addEventListener('change', hendleInput);
+
+if (savedTheme) {
+  body.classList.add(savedTheme);
+
+  if (savedTheme === Theme.DARK) {
+    checkbox.checked = true;
+  }
+}
+
+if (body.className === '') {
+  body.classList.add(Theme.LIGHT);
+}
